@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Android\code\code\XmppClient3\app\libs\asmack-android-17-0.8.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="641c8c65792225f5d8668fb6cb1af9459b04cbee">
+        <dex dex="D:\Android\code\code\XmppClient3\app\build\intermediates\pre-dexed\debug\asmack-android-17-0.8.3-5825888900e088bb3869f4f86cf18d628f3509f5.jar" />
+    </item>
+    <item
+        jar="D:\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="D:\Android\code\code\XmppClient3\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-5c13dae993a3a70564280b74f4a6300075997e8b.jar" />
+    </item>
+
+</items>

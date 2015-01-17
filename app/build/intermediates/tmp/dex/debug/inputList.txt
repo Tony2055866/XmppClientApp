@@ -1,0 +1,3 @@
+D:\Android\code\code\XmppClient3\app\build\intermediates\classes\debug
+D:\Android\code\code\XmppClient3\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-5c13dae993a3a70564280b74f4a6300075997e8b.jar
+D:\Android\code\code\XmppClient3\app\build\intermediates\pre-dexed\debug\asmack-android-17-0.8.3-5825888900e088bb3869f4f86cf18d628f3509f5.jar
