@@ -8,11 +8,11 @@ import android.view.Display;
 import android.view.WindowManager;
 
 /**
- * ¹¤¾ßÀà
+ * å·¥å…·ç±»
  */
 public class Utils {
 	/**
-	 * ¸ù¾İjid»ñÈ¡ÓÃ»§Ãû
+	 * æ ¹æ®jidè·å–ç”¨æˆ·å
 	 */
 	public static String getJidToUsername(String jid){
 		return jid.split("@")[0];

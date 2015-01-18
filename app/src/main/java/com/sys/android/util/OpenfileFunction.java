@@ -13,14 +13,14 @@ public class OpenfileFunction {
 		File file = new File(filePath);
 		if (!file.exists())
 			return null;
-		/* È¡µÃÀ©Õ¹Ãû */
+		/* å–å¾—æ‰©å±•å */
 		String end = file
 				.getName()
 				.substring(file.getName().lastIndexOf(".") + 1,
 						file.getName().length()).toLowerCase();
 		end = end.trim().toLowerCase();
 		System.out.println(end);
-		/* ÒÀÀ©Õ¹ÃûµÄÀàĞÍ¾ö¶¨MimeType */
+		/* ä¾æ‰©å±•åçš„ç±»å‹å†³å®šMimeType */
 		if (end.equals("m4a") || end.equals("mp3") || end.equals("mid")
 				|| end.equals("xmf") || end.equals("ogg") || end.equals("wav")
 				|| end.equals("amr")) {
@@ -49,7 +49,7 @@ public class OpenfileFunction {
 		}
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªAPKÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€APKæ–‡ä»¶çš„intent
 	public static Intent getAllIntent(String param) {
 
 		Intent intent = new Intent();
@@ -60,7 +60,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªAPKÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€APKæ–‡ä»¶çš„intent
 	public static Intent getApkFileIntent(String param) {
 
 		Intent intent = new Intent();
@@ -71,7 +71,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªVIDEOÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€VIDEOæ–‡ä»¶çš„intent
 	public static Intent getVideoFileIntent(String param) {
 
 		Intent intent = new Intent("android.intent.action.VIEW");
@@ -83,7 +83,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªAUDIOÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€AUDIOæ–‡ä»¶çš„intent
 	public static Intent getAudioFileIntent(String param) {
 
 		Intent intent = new Intent("android.intent.action.VIEW");
@@ -95,7 +95,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªHtmlÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€Htmlæ–‡ä»¶çš„intent
 	public static Intent getHtmlFileIntent(String param) {
 
 		Uri uri = Uri.parse(param).buildUpon()
@@ -106,7 +106,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªÍ¼Æ¬ÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€å›¾ç‰‡æ–‡ä»¶çš„intent
 	public static Intent getImageFileIntent(String param) {
 
 		Intent intent = new Intent("android.intent.action.VIEW");
@@ -117,7 +117,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªPPTÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€PPTæ–‡ä»¶çš„intent
 	public static Intent getPptFileIntent(String param) {
 
 		Intent intent = new Intent("android.intent.action.VIEW");
@@ -128,7 +128,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªExcelÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€Excelæ–‡ä»¶çš„intent
 	public static Intent getExcelFileIntent(String param) {
 
 		Intent intent = new Intent("android.intent.action.VIEW");
@@ -139,7 +139,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªWordÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€Wordæ–‡ä»¶çš„intent
 	public static Intent getWordFileIntent(String param) {
 
 		Intent intent = new Intent("android.intent.action.VIEW");
@@ -150,7 +150,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªCHMÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€CHMæ–‡ä»¶çš„intent
 	public static Intent getChmFileIntent(String param) {
 
 		Intent intent = new Intent("android.intent.action.VIEW");
@@ -161,7 +161,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªÎÄ±¾ÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€æ–‡æœ¬æ–‡ä»¶çš„intent
 	public static Intent getTextFileIntent(String param, boolean paramBoolean) {
 
 		Intent intent = new Intent("android.intent.action.VIEW");
@@ -177,7 +177,7 @@ public class OpenfileFunction {
 		return intent;
 	}
 
-	// Android»ñÈ¡Ò»¸öÓÃÓÚ´ò¿ªPDFÎÄ¼şµÄintent
+	// Androidè·å–ä¸€ä¸ªç”¨äºæ‰“å¼€PDFæ–‡ä»¶çš„intent
 	public static Intent getPdfFileIntent(String param) {
 
 		Intent intent = new Intent("android.intent.action.VIEW");

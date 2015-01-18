@@ -1,8 +1,11 @@
 package com.sys.android.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -25,23 +28,30 @@ import com.sys.android.util.DialogFactory;
 import com.sys.android.xmpp.R;
 import com.sys.android.xmppmanager.XmppConnection;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SuppressWarnings("all")
 public class RegisterActivity extends Activity implements OnClickListener {
 
 	private Button mBtnRegister;
 	private Button mRegBack;
-	private EditText mEmailEt, mNameEt, mPasswdEt, mPasswdEt2,nameMCH;
+	private EditText mEmailEt, mNameEt, mPasswdEt, mPasswdEt2, mMotherLangEdit,mLearnLangEdit;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);// »•µÙ±ÍÃ‚¿∏
+		requestWindowFeature(Window.FEATURE_NO_TITLE);// ÂéªÊéâÊ†áÈ¢òÊ†è
 		setContentView(R.layout.register);
 		mBtnRegister = (Button) findViewById(R.id.register_btn);
 		mRegBack = (Button) findViewById(R.id.reg_back_btn);
 		mBtnRegister.setOnClickListener(this);
 		mRegBack.setOnClickListener(this);
 
-		nameMCH = (EditText) findViewById(R.id.reg_nameMCH);
+		mMotherLangEdit = (EditText) findViewById(R.id.reg_motherLang);
+        mLearnLangEdit =  (EditText) findViewById(R.id.reg_learnLang);
+        //mMotherLangEdit.setOnClickListener(this);
+        //mLearnLangEdit.setOnClickListener(this);
+
 		mEmailEt = (EditText) findViewById(R.id.reg_email);
 		mNameEt = (EditText) findViewById(R.id.reg_name);
 		mPasswdEt = (EditText) findViewById(R.id.reg_password);
@@ -52,25 +62,65 @@ public class RegisterActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		
 		switch (v.getId()) {
-		case R.id.reg_back_btn:
-			login();
-			break;
-		case R.id.register_btn:
-			registered();
-			break;
-		default:
-			break;
+            case R.id.reg_back_btn:
+                login();
+                break;
+            case R.id.register_btn:
+                registered();
+                break;
+//            case R.id.reg_motherLang:
+//                showLangOptions();
+//                break;
+//            case R.id.reg_learnLang:
+//                showLangOptions();
+            default:
+                break;
 		}
 		
 	}
 
 
-	private void registered() {
+    public void showLangOptions(View v) {
+        Log.i("tong test", "showLangOptions v:" + v + "  ; id:" + v.getId());
+        final View view = v;
+        final String items[] = {"Ê±âËØ≠","Êó•ËØ≠","Èü©ËØ≠","Ëã±ËØ≠"};
+        final boolean ischeckds[] = new boolean[items.length];
+        final List<String> selected = new ArrayList<String>(2);
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("ÈÄâÊã©‰Ω†ÁöÑÊØçËØ≠")
+                .setMultiChoiceItems(items, ischeckds, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                        Log.i("tong test", "showMotherLangOptins click : " + i +"  boolean:" +b);
+                        if(i < items.length) ischeckds[i] = b;
+                        if(b) selected.add(items[i]);
+                    }
+                })
+                .setPositiveButton("Á°ÆÂÆö", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String res = "";
+                        if(selected.size() > 0){
+                            res = selected.get(0);
+                        }
+                        for(int k=1; k<selected.size(); k++) res += "," + selected.get(k);
+                        if(view.getId() == R.id.reg_learnLangLayout){
+                            mLearnLangEdit.setText(res);
+                        }else {
+                            mMotherLangEdit.setText(res);
+                        }
+                    }
+                }).setNegativeButton("ÂèñÊ∂à", null)
+                .show();
+    }
+
+
+    private void registered() {
 
 		String accounts = mNameEt.getText().toString();
 		String password = mPasswdEt.getText().toString();
 		String email = mEmailEt.getText().toString();
-		String mingcheng = nameMCH.getText().toString();
+		String mingcheng = mMotherLangEdit.getText().toString();
 		
 		
 		Registration reg = new Registration();
@@ -91,7 +141,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		IQ result = (IQ) collector.nextResult(SmackConfiguration
 		                                .getPacketReplyTimeout());
 		                        // Stop queuing results
-		collector.cancel();// Õ£÷π«Î«Ûresults£® «∑Ò≥…π¶µƒΩ·π˚£©
+		collector.cancel();// ÂÅúÊ≠¢ËØ∑Ê±ÇresultsÔºàÊòØÂê¶ÊàêÂäüÁöÑÁªìÊûúÔºâ
 		if (result == null) {
 		    Toast.makeText(getApplicationContext(), "no response from server", Toast.LENGTH_SHORT).show();
 		} else if (result.getType() == IQ.Type.ERROR) {
@@ -99,7 +149,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		                        .equalsIgnoreCase("conflict(409)")) {
 		    Toast.makeText(getApplicationContext(), "this account exits", Toast.LENGTH_SHORT).show();
 		    } else {
-		        Toast.makeText(getApplicationContext(), "◊¢≤· ß∞‹",
+		        Toast.makeText(getApplicationContext(), "Ê≥®ÂÜåÂ§±Ë¥•",
 		                                        Toast.LENGTH_SHORT).show();
 		    }
 		} else if (result.getType() == IQ.Type.RESULT) {
@@ -107,7 +157,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 				XmppConnection.getConnection().login(accounts, password);
 				Presence presence = new Presence(Presence.Type.available);
 				XmppConnection.getConnection().sendPacket(presence);
-				DialogFactory.ToastDialog(this, "QQ◊¢≤·", "«◊£¨πßœ≤ƒ„£¨◊¢≤·≥…π¶¡À£°");
+				DialogFactory.ToastDialog(this, "QQÊ≥®ÂÜå", "‰∫≤ÔºåÊÅ≠Âñú‰Ω†ÔºåÊ≥®ÂÜåÊàêÂäü‰∫ÜÔºÅ");
 				Intent intent = new Intent();
 				intent.putExtra("USERID", accounts);
 				intent.setClass(RegisterActivity.this, FriendListActivity.class);

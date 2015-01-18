@@ -14,7 +14,7 @@ public class Msg {
 	String msg;
 	String date;
 	String from;
-	String type  =TYPE[2];
+	String type  = TYPE[2];
 	String receive;
 	String time;
 	String filePath;
@@ -163,6 +163,8 @@ public class Msg {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}finally{
+            Log.i("tong test", "analyseMsgBody : " + jsonStr);
+            msg.setFrom("IN");
 			return msg;
 		}
 		
@@ -175,7 +177,7 @@ public class Msg {
 	
 	
 	/**
-	 * ��json 
+	 * 锟斤拷json 
 	 */
 	public static  String  toJson(Msg msg){
 		JSONObject jsonObject=new JSONObject();

@@ -46,7 +46,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * ´¦Àíµã»÷ÊÂ¼ş
+	 * å¤„ç†ç‚¹å‡»äº‹ä»¶
 	 */
 	public void onClick(View v) {
 
@@ -69,7 +69,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * Ìá½»ÕËºÅÃÜÂëĞÅÏ¢µ½·şÎñÆ÷
+	 * æäº¤è´¦å·å¯†ç ä¿¡æ¯åˆ°æœåŠ¡å™¨
 	 */
 	private void submit() {
 		String accounts = mAccounts.getText().toString();
@@ -82,14 +82,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 			try {
 				SmackAndroid.init(LoginActivity.this);
                 Log.i("tong test","accounts : " + accounts + "  password:" + password);
-                // Á¬½Ó·şÎñÆ÷
+                // è¿æ¥æœåŠ¡å™¨
 				XmppConnection.getConnection().login(accounts, password);
-				// Á¬½Ó·şÎñÆ÷³É¹¦£¬¸ü¸ÄÔÚÏß×´Ì¬
+				// è¿æ¥æœåŠ¡å™¨æˆåŠŸï¼Œæ›´æ”¹åœ¨çº¿çŠ¶æ€
 				Presence presence = new Presence(Presence.Type.available);
 				XmppConnection.getConnection().sendPacket(presence);
-				// µ¯³öµÇÂ¼³É¹¦ÌáÊ¾
+				// å¼¹å‡ºç™»å½•æˆåŠŸæç¤º
 				DialogFactory.ToastDialog(this, "notice", "login success");
-				// Ìø×ªµ½ºÃÓÑÁĞ±í
+				// è·³è½¬åˆ°å¥½å‹åˆ—è¡¨
 				Intent intent = new Intent();
 				intent.putExtra("USERID", accounts);
 				intent.setClass(LoginActivity.this, FriendListActivity.class);

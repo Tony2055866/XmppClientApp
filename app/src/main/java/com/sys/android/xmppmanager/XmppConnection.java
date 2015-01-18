@@ -31,24 +31,24 @@ import org.jivesoftware.smackx.provider.VCardProvider;
 import org.jivesoftware.smackx.provider.XHTMLExtensionProvider;
 import org.jivesoftware.smackx.search.UserSearch;
 /**
- * xmppÅäÖÃÒ³Ãæ
+ * xmppé…ç½®é¡µé¢
  * @author yuanqihesheng
  * @date 2013-04-27
  */
 public class XmppConnection {
 	
-	//public static String SERVER_HOST = "192.168.1.99";//Äãopenfire·şÎñÆ÷ËùÔÚµÄip
-	//public static  String SERVER_NAME = "aa";//ÉèÖÃopenfireÊ±µÄ·şÎñÆ÷Ãû
-	public static int    SERVER_PORT = 5222;//·şÎñ¶Ë¿Ú ¿ÉÒÔÔÚopenfireÉÏÉèÖÃ
-	public static String SERVER_HOST = "www.acmerblog.com";//Äãopenfire·şÎñÆ÷ËùÔÚµÄip
-	public static  String SERVER_NAME = "www.acmerblog.com";//ÉèÖÃopenfireÊ±µÄ·şÎñÆ÷Ãû
+	//public static String SERVER_HOST = "192.168.1.99";//ä½ openfireæœåŠ¡å™¨æ‰€åœ¨çš„ip
+	//public static  String SERVER_NAME = "aa";//è®¾ç½®openfireæ—¶çš„æœåŠ¡å™¨å
+	public static int    SERVER_PORT = 5222;//æœåŠ¡ç«¯å£ å¯ä»¥åœ¨openfireä¸Šè®¾ç½®
+	public static String SERVER_HOST = "www.acmerblog.com";//ä½ openfireæœåŠ¡å™¨æ‰€åœ¨çš„ip
+	public static  String SERVER_NAME = "www.acmerblog.com";//è®¾ç½®openfireæ—¶çš„æœåŠ¡å™¨å
     private static XMPPConnection connection = null;
     
 	private static void openConnection() {
 		try {
 			if (null == connection || !connection.isAuthenticated()) {
-				XMPPConnection.DEBUG_ENABLED = true;//¿ªÆôDEBUGÄ£Ê½
-				//ÅäÖÃÁ¬½Ó
+				XMPPConnection.DEBUG_ENABLED = true;//å¼€å¯DEBUGæ¨¡å¼
+				//é…ç½®è¿æ¥
 				ConnectionConfiguration config = new ConnectionConfiguration(
 						SERVER_HOST, SERVER_PORT,
 						SERVER_NAME);
@@ -66,8 +66,8 @@ public class XmppConnection {
 				config.setSASLAuthenticationEnabled(true);*/
 				 
 				connection = new XMPPConnection(config);
-				connection.connect();//Á¬½Óµ½·şÎñÆ÷
-				//ÅäÖÃ¸÷ÖÖProvider£¬Èç¹û²»ÅäÖÃ£¬Ôò»áÎŞ·¨½âÎöÊı¾İ
+				connection.connect();//è¿æ¥åˆ°æœåŠ¡å™¨
+				//é…ç½®å„ç§Providerï¼Œå¦‚æœä¸é…ç½®ï¼Œåˆ™ä¼šæ— æ³•è§£ææ•°æ®
 				configureConnection(ProviderManager.getInstance());
 			}
 		} catch (XMPPException xe) {
@@ -76,7 +76,7 @@ public class XmppConnection {
 	}
 
 	/**
-	 * ´´½¨Á¬½Ó
+	 * åˆ›å»ºè¿æ¥
 	 */	
 	public static XMPPConnection getConnection() {
 		if (connection == null) {
@@ -86,14 +86,14 @@ public class XmppConnection {
 	}
 	
 	/**
-	 * ¹Ø±ÕÁ¬½Ó
+	 * å…³é—­è¿æ¥
 	 */	
 	public static void closeConnection() {
 		connection.disconnect();
 		connection = null;
 	}
 	/**
-	 * xmppÅäÖÃ
+	 * xmppé…ç½®
 	 */
 	private static void configureConnection(ProviderManager pm) {
 		// Private Data Storage
@@ -118,9 +118,9 @@ public class XmppConnection {
 		pm.addExtensionProvider("html", "http://jabber.org/protocol/xhtml-im",new XHTMLExtensionProvider());
 		// Group Chat Invitations
 		pm.addExtensionProvider("x", "jabber:x:conference",new GroupChatInvitation.Provider());
-		// Service Discovery # Items //½âÎö·¿¼äÁĞ±í
+		// Service Discovery # Items //è§£ææˆ¿é—´åˆ—è¡¨
 		pm.addIQProvider("query", "http://jabber.org/protocol/disco#items",new DiscoverItemsProvider());
-		// Service Discovery # Info //Ä³Ò»¸ö·¿¼äµÄĞÅÏ¢
+		// Service Discovery # Info //æŸä¸€ä¸ªæˆ¿é—´çš„ä¿¡æ¯
 		pm.addIQProvider("query", "http://jabber.org/protocol/disco#info",new DiscoverInfoProvider());
 		// Data Forms
 		pm.addExtensionProvider("x", "jabber:x:data", new DataFormProvider());

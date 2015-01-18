@@ -17,12 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dip"
+            android:layout_marginLeft="15dip"
             android:background="@drawable/selector_btn_back"
             android:gravity="center_horizontal|center_vertical"
-            android:text="返回"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView2"
@@ -51,30 +50,16 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:paddingLeft="15.0dip"
+                style="@style/regist_lable_textview"
                 android:text="*邮箱"
-                android:textColor="@android:color/black"
-                android:textSize="18.0sp" />
-
+                />
 
             <EditText
+                style="@style/regist_editText"
                 android:id="@+id/reg_email"
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:layout_marginRight="15.0dip"
-                android:layout_weight="3"
-                android:background="@android:color/white"
                 android:hint="请输入邮箱"
                 android:inputType="textEmailAddress"
-                android:maxLength="20"
-                android:paddingLeft="10.0dip"
-                android:textColor="#ff545454"
-                android:textSize="16.0sp" />
+                 />
 
         </LinearLayout>
 
@@ -90,76 +75,20 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:paddingLeft="15.0dip"
-                android:text="*用户名"
-                android:textColor="@android:color/black"
-                android:textSize="18.0sp" />
-
-
-
+                style="@style/regist_lable_textview"
+                android:text="*用户名"/>
             <EditText
                 android:id="@+id/reg_name"
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:layout_marginRight="15.0dip"
-                android:layout_weight="3"
-                android:background="@android:color/white"
-                android:hint="请输入用户名"
-                android:maxLength="20"
-                android:paddingLeft="10.0dip"
-                android:textColor="#ff545454"
-                android:textSize="16.0sp" />
+                style="@style/regist_editText"
+                android:hint="请输入用户名"/>
 
         </LinearLayout>
-
           <View
             android:layout_width="fill_parent"
             android:layout_height="1.0px"
             android:background="@drawable/shape_line" />
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="50.0dip"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
 
-            <TextView
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:paddingLeft="15.0dip"
-                android:text="*名称"
-                android:textColor="@android:color/black"
-                android:textSize="18.0sp" />
-
-
-
-            <EditText
-                android:id="@+id/reg_nameMCH"
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:layout_marginRight="15.0dip"
-                android:layout_weight="3"
-                android:background="@android:color/white"
-                android:hint="请输入名称"
-                android:maxLength="20"
-                android:paddingLeft="10.0dip"
-                android:textColor="#ff545454"
-                android:textSize="16.0sp" />
-
-        </LinearLayout>
-        
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1.0px"
-            android:background="@drawable/shape_line" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -168,30 +97,15 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:paddingLeft="15.0dip"
+                style="@style/regist_lable_textview"
                 android:text="*密码"
-                android:textColor="@android:color/black"
-                android:textSize="18.0sp" />
-
-
+                 />
             <EditText
                 android:id="@+id/reg_password"
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:layout_marginRight="15.0dip"
-                android:layout_weight="3"
-                android:background="@android:color/white"
+                style="@style/regist_editText"
                 android:hint="请输入密码"
                 android:inputType="textPassword"
-                android:maxLength="20"
-                android:paddingLeft="10.0dip"
-                android:textColor="#ff545454"
-                android:textSize="16.0sp" />
+                 />
 
         </LinearLayout>
 
@@ -207,32 +121,63 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:paddingLeft="15.0dip"
-                android:text="*确认 密码"
-                android:textColor="@android:color/black"
-                android:textSize="18.0sp" />
-
-
+                style="@style/regist_lable_textview"
+                android:text="*确认密码"
+                 />
             <EditText
                 android:id="@+id/reg_password2"
-                android:layout_width="1px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.0dip"
-                android:layout_marginRight="15.0dip"
-                android:layout_weight="3"
-                android:background="@android:color/white"
+                style="@style/regist_editText"
                 android:hint="请再次输入密码"
                 android:inputType="textPassword"
-                android:maxLength="20"
-                android:paddingLeft="10.0dip"
-                android:textColor="#ff545454"
-                android:textSize="16.0sp" />
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:background="@drawable/shape_line" />
+
+        <LinearLayout android:id="@+id/reg_motherLangLayout"
+            android:onClick="showLangOptions"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/regist_lable_textview"
+                android:text="您的母语" />
+            <EditText
+                style="@style/regist_editText"
+                android:id="@+id/reg_motherLang"
+                android:editable="false"
+                android:hint="点击选择"
+                />
 
         </LinearLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:background="@drawable/shape_line" />
+
+        <LinearLayout android:id="@+id/reg_learnLangLayout"
+            android:onClick="showLangOptions"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/regist_lable_textview"
+                android:text="学习的语言" />
+            <EditText
+                android:id="@+id/reg_learnLang"
+                style="@style/regist_editText"
+                android:editable="false"
+                android:hint="点击选择" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <LinearLayout

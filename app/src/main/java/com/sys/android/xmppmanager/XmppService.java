@@ -12,7 +12,7 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Presence;
 /**
- * xmpp·½·¨
+ * xmppæ–¹æ³•
  * @author yuanqihesheng
  * @date 2013-04-27
  */
@@ -20,7 +20,7 @@ public class XmppService{
 
 	
 	/** 
-     * É¾³ıµ±Ç°ÓÃ»§ 
+     * åˆ é™¤å½“å‰ç”¨æˆ· 
      * @param connection 
      * @return 
      */  
@@ -35,7 +35,7 @@ public class XmppService{
         }  
     }  
 	/**
-	 * ·µ»ØËùÓĞ×éĞÅÏ¢ <RosterGroup>
+	 * è¿”å›æ‰€æœ‰ç»„ä¿¡æ¯ <RosterGroup>
 	 * @return List(RosterGroup)
 	 */
 	public static List<RosterGroup> getGroups(Roster roster) {
@@ -48,7 +48,7 @@ public class XmppService{
 	}
 
 	/**
-	 * ·µ»ØÏàÓ¦(groupName)×éÀïµÄËùÓĞÓÃ»§<RosterEntry>
+	 * è¿”å›ç›¸åº”(groupName)ç»„é‡Œçš„æ‰€æœ‰ç”¨æˆ·<RosterEntry>
 	 * @return List(RosterEntry)
 	 */
 	public static List<RosterEntry> getEntriesByGroup(Roster roster,
@@ -63,7 +63,7 @@ public class XmppService{
 	}
 
 	/**
-	 * ·µ»ØËùÓĞÓÃ»§ĞÅÏ¢ <RosterEntry>
+	 * è¿”å›æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯ <RosterEntry>
 	 * @return List(RosterEntry)
 	 */
 	public static List<RosterEntry> getAllEntries(Roster roster) {
@@ -77,7 +77,7 @@ public class XmppService{
 	
 	
 	/** 
-     * ´´½¨Ò»¸ö×é 
+     * åˆ›å»ºä¸€ä¸ªç»„ 
      */ 
 	public static boolean addGroup(Roster roster,String groupName)  
     {  
@@ -91,7 +91,7 @@ public class XmppService{
     }  
       
     /** 
-     * É¾³ıÒ»¸ö×é 
+     * åˆ é™¤ä¸€ä¸ªç»„ 
      */  
     public static boolean removeGroup(Roster roster,String groupName)  
     {  
@@ -99,7 +99,7 @@ public class XmppService{
     }
     
     /**
-	 * Ìí¼ÓÒ»¸öºÃÓÑ  ÎŞ·Ö×é
+	 * æ·»åŠ ä¸€ä¸ªå¥½å‹  æ— åˆ†ç»„
 	 */
 	public static boolean addUser(Roster roster,String userName,String name)
 	{
@@ -113,7 +113,7 @@ public class XmppService{
 		
 	}
 	/**
-	 * Ìí¼ÓÒ»¸öºÃÓÑµ½·Ö×é
+	 * æ·»åŠ ä¸€ä¸ªå¥½å‹åˆ°åˆ†ç»„
 	 * @param roster
 	 * @param userName
 	 * @param name
@@ -132,7 +132,7 @@ public class XmppService{
 	}
 	
 	/**
-	 * É¾³ıÒ»¸öºÃÓÑ
+	 * åˆ é™¤ä¸€ä¸ªå¥½å‹
 	 * @param roster
 	 * @param userJid
 	 * @return
@@ -150,21 +150,21 @@ public class XmppService{
 	}
 	
 	/**
-     * °ÑÒ»¸öºÃÓÑÌí¼Óµ½Ò»¸ö×éÖĞ
+     * æŠŠä¸€ä¸ªå¥½å‹æ·»åŠ åˆ°ä¸€ä¸ªç»„ä¸­
      * @param userJid
      * @param groupName
      */
     public static void addUserToGroup(final String userJid, final String groupName,
             final XMPPConnection connection) {
             	RosterGroup group = connection.getRoster().getGroup(groupName);
-                // Õâ¸ö×éÒÑ¾­´æÔÚ¾ÍÌí¼Óµ½Õâ¸ö×é£¬²»´æÔÚ´´½¨Ò»¸ö×é
+                // è¿™ä¸ªç»„å·²ç»å­˜åœ¨å°±æ·»åŠ åˆ°è¿™ä¸ªç»„ï¼Œä¸å­˜åœ¨åˆ›å»ºä¸€ä¸ªç»„
                 RosterEntry entry = connection.getRoster().getEntry(userJid);
                 try {
                     if (group != null) {
                         if (entry != null)
                             group.addEntry(entry);
                     } else {
-                        RosterGroup newGroup = connection.getRoster().createGroup("ÎÒµÄºÃÓÑ");
+                        RosterGroup newGroup = connection.getRoster().createGroup("æˆ‘çš„å¥½å‹");
                         if (entry != null)
                             newGroup.addEntry(entry);
                     }
@@ -174,7 +174,7 @@ public class XmppService{
     }
 
     /**
-     * °ÑÒ»¸öºÃÓÑ´Ó×éÖĞÉ¾³ı
+     * æŠŠä¸€ä¸ªå¥½å‹ä»ç»„ä¸­åˆ é™¤
      * @param userJid
      * @param groupName
      */
@@ -192,7 +192,7 @@ public class XmppService{
      }
     
     /** 
-     * ĞŞ¸ÄĞÄÇé 
+     * ä¿®æ”¹å¿ƒæƒ… 
      * @param connection 
      * @param status 
      */  

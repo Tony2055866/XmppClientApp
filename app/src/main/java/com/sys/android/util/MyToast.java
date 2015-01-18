@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 /**
- * ×Ô¶¨ÒåToast
+ * è‡ªå®šä¹‰Toast
  */
 public class MyToast {
 	

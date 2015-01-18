@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,6 +46,8 @@ public class ChatListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		this.inflater = (LayoutInflater) this.cxt
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Log.i("tong test","position : " + position + "  listMsg.get(position):"+listMsg.get(position) + " ;" );
+
 		if (listMsg.get(position).getFrom().equals("IN")) {
 			convertView = this.inflater.inflate(R.layout.formclient_chat_in,
 					null);
@@ -63,12 +66,12 @@ public class ChatListAdapter extends BaseAdapter {
 		dateView.setText(listMsg.get(position).getDate());
 		msgView.setText(listMsg.get(position).getMsg());
 
-		if (!Msg.TYPE[2].equals(listMsg.get(position).getType())) {// normal 普通msg
+		if (!Msg.TYPE[2].equals(listMsg.get(position).getType())) {// normal 鏅�歮sg
 			final Msg msg = listMsg.get(position);
 			TextView msgStatus = (TextView) convertView
 					.findViewById(R.id.msg_status);
 			msgStatus.setText(listMsg.get(position).getReceive() + "");
-			convertView.setOnClickListener(new OnClickListener() {// 点击查看
+			convertView.setOnClickListener(new OnClickListener() {// 鐐瑰嚮鏌ョ湅
 						@Override
 						public void onClick(View v) {
 							Intent intent = OpenfileFunction.openFile(msg
@@ -82,9 +85,13 @@ public class ChatListAdapter extends BaseAdapter {
 		} else {
 			TextView msgStatus = (TextView) convertView
 					.findViewById(R.id.msg_status);
-			msgStatus.setVisibility(View.GONE);// 影藏
+			msgStatus.setVisibility(View.GONE);// 褰辫棌
 		}
 
 		return convertView;
 	}
+
+    public static class ViewHolder{
+
+    }
 }

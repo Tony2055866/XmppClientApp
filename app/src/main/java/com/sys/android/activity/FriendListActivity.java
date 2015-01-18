@@ -61,13 +61,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * ºÃÓÑÁĞ±í
+ * å¥½å‹åˆ—è¡¨
  */
 @SuppressWarnings("all")
 public class FriendListActivity extends Activity implements
 		OnGroupClickListener, OnChildClickListener {
-	private String pUSERID;// µ±Ç°ÓÃ»§
-	private String pGROUPNAME;// µ±Ç°×é
+	private String pUSERID;// å½“å‰ç”¨æˆ·
+	private String pGROUPNAME;// å½“å‰ç»„
 	private LayoutInflater mChildInflater;
 	private ExpandableListView listView;
 	private List<GroupInfo> groupList;
@@ -82,8 +82,8 @@ public class FriendListActivity extends Activity implements
 	private NotificationManager mNotificationManager;
 	XMPPConnection connection = XmppConnection.getConnection();
 	public static final String CHECK = null;
-	private String fromUserJid = null;// ·¢ËÍÑûÇëµÄÓÃ»§µÄuserJid
-	private String toUserJid = null;// ÊÕµ½ÑûÇëµÄÓÃ»§µÄuserJid
+	private String fromUserJid = null;// å‘é€é‚€è¯·çš„ç”¨æˆ·çš„userJid
+	private String toUserJid = null;// æ”¶åˆ°é‚€è¯·çš„ç”¨æˆ·çš„userJid
 	private TextView myStatusText = null;
 	private String myMood = null;
 	private String friendMood = null;
@@ -115,7 +115,7 @@ public class FriendListActivity extends Activity implements
 			Intent intent = new Intent(this, LoginActivity.class);
 			startActivity(intent);
 			finish();
-			Toast.makeText(this, "³ö´íÀ²", 0).show();
+			Toast.makeText(this, "å‡ºé”™å•¦", 0).show();
 			return;
 		}
 		adapter = new MyAdapter(this);
@@ -136,20 +136,20 @@ public class FriendListActivity extends Activity implements
 				return false;
 			}
 		});
-		// ÏòºÃÓÑ·¢ËÍ×Ô¼ºµÄ×´Ì¬
+		// å‘å¥½å‹å‘é€è‡ªå·±çš„çŠ¶æ€
 		myStatusText = (TextView) findViewById(R.id.myStatusText);
 		String status = myStatusText.getText().toString();
 		XmppService.changeStateMessage(connection, status);
 
 		roster.addRosterListener(new RosterListener() {
 			@Override
-			// ¼àÌıºÃÓÑÉêÇëÏûÏ¢
+			// ç›‘å¬å¥½å‹ç”³è¯·æ¶ˆæ¯
 			public void entriesAdded(Collection<String> invites) {
 				// TODO Auto-generated method stub
-				System.out.println("from froms : £º" + invites);
+				System.out.println("from froms : ï¼š" + invites);
 				for (Iterator iter = invites.iterator(); iter.hasNext();) {
 					String fromUserJids = (String) iter.next();
-					System.out.println("fromUserJids£º" + fromUserJids);
+					System.out.println("fromUserJidsï¼š" + fromUserJids);
 					fromUserJid = fromUserJids;
 				}
 				if (fromUserJid != null) {
@@ -163,13 +163,13 @@ public class FriendListActivity extends Activity implements
 			}
 
 			@Override
-			// ¼àÌıºÃÓÑÍ¬ÒâÌí¼ÓÏûÏ¢
+			// ç›‘å¬å¥½å‹åŒæ„æ·»åŠ æ¶ˆæ¯
 			public void entriesUpdated(Collection<String> invites) {
 				// TODO Auto-generated method stub
-				System.out.println("entriesUpdated£º" + invites);
+				System.out.println("entriesUpdatedï¼š" + invites);
 				for (Iterator iter = invites.iterator(); iter.hasNext();) {
 					String fromUserJids = (String) iter.next();
-					System.out.println("the agreed users £º" + fromUserJids);
+					System.out.println("the agreed users ï¼š" + fromUserJids);
 					toUserJid = fromUserJids;
 				}
 				if (toUserJid != null) {
@@ -180,28 +180,28 @@ public class FriendListActivity extends Activity implements
 			}
 
 			@Override
-			// ¼àÌıºÃÓÑÉ¾³ıÏûÏ¢
+			// ç›‘å¬å¥½å‹åˆ é™¤æ¶ˆæ¯
 			public void entriesDeleted(Collection<String> delFriends) {
 				// TODO Auto-generated method stub
-				System.out.println("entriesDeleted£º" + delFriends);
+				System.out.println("entriesDeletedï¼š" + delFriends);
 				if (delFriends.size() > 0) {
 					loadFriend();
 				}
 			}
 
 			@Override
-			// ¼àÌıºÃÓÑ×´Ì¬¸Ä±äÏûÏ¢
+			// ç›‘å¬å¥½å‹çŠ¶æ€æ”¹å˜æ¶ˆæ¯
 			public void presenceChanged(Presence presence) {
 				// TODO Auto-generated method stub
 				friendMood = presence.getStatus();
-				System.out.println("presence.getStatus()£º"
+				System.out.println("presence.getStatus()ï¼š"
 						+ presence.getStatus());
 			}
 
 		});
 
 		ChatManager cm = XmppConnection.getConnection().getChatManager();
-		// »ñÈ¡·şÎñÆ÷·¢ËÍÀ´µÄÈÎºÎÏûÏ¢
+		// è·å–æœåŠ¡å™¨å‘é€æ¥çš„ä»»ä½•æ¶ˆæ¯
 		cm.addChatListener(new ChatManagerListener() {
 			@Override
 			public void chatCreated(Chat chat, boolean able) {
@@ -209,7 +209,7 @@ public class FriendListActivity extends Activity implements
 					@Override
 					public void processMessage(Chat chat2, Message message) {
 						android.os.Message msg = handler.obtainMessage();
-						System.out.println("the message from server £º" + message.getFrom()
+						System.out.println("the message from server ï¼š" + message.getFrom()
 								+ "  " + message.getBody());
 						// setNotiType(R.drawable.log, message.getBody());
 						msg.obj = message.getBody();
@@ -219,30 +219,30 @@ public class FriendListActivity extends Activity implements
 				});
 			}
 		});
-		System.out.println("fromUserJid£º" + fromUserJid);
+		System.out.println("fromUserJid:" + fromUserJid);
 		if (fromUserJid != null) {
 			AlertDialog.Builder dialog = new AlertDialog.Builder(
 					FriendListActivity.this);
-			dialog.setTitle("ºÃÓÑÉêÇë")
+			dialog.setTitle("å¥½å‹ç”³è¯·")
 					.setIcon(R.drawable.log)
-					.setMessage("¡¾" + fromUserJid + "¡¿ÏòÄã·¢À´ºÃÓÑÉêÇë£¬ÊÇ·ñÌí¼Ó¶Ô·½ÎªºÃÓÑ?")
-					.setPositiveButton("Ìí¼Ó",
+					.setMessage("ã€" + fromUserJid + "ã€‘å‘ä½ å‘æ¥å¥½å‹ç”³è¯·ï¼Œæ˜¯å¦æ·»åŠ å¯¹æ–¹ä¸ºå¥½å‹?")
+					.setPositiveButton("æ·»åŠ ",
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
 									// TODO Auto-generated method stub
-									dialog.cancel();// È¡Ïûµ¯³ö¿ò
-									// ÔÊĞíÌí¼ÓºÃÓÑÔò»Ø¸´ÏûÏ¢£¬±»ÑûÇëÈËÓ¦µ±Ò²·¢ËÍÒ»¸öÑûÇëÇëÇó¡£
+									dialog.cancel();// å–æ¶ˆå¼¹å‡ºæ¡†
+									// å…è®¸æ·»åŠ å¥½å‹åˆ™å›å¤æ¶ˆæ¯ï¼Œè¢«é‚€è¯·äººåº”å½“ä¹Ÿå‘é€ä¸€ä¸ªé‚€è¯·è¯·æ±‚ã€‚
 									Presence subscription = new Presence(
 											Presence.Type.subscribe);
 									subscription.setTo(fromUserJid);
 									XmppConnection.getConnection().sendPacket(
 											subscription);
-									System.out.println("pGROUPNAMEÊÇ£º"
+									System.out.println("pGROUPNAMEæ˜¯ï¼š"
 											+ pGROUPNAME);
 									if (pGROUPNAME == null) {
-										pGROUPNAME = "ÎÒµÄºÃÓÑ";
+										pGROUPNAME = "æˆ‘çš„å¥½å‹";
 									}
 									XmppService.addUserToGroup(fromUserJid,
 											pGROUPNAME, connection);
@@ -254,13 +254,13 @@ public class FriendListActivity extends Activity implements
 									startActivity(intent);
 								}
 							})
-					.setNegativeButton("¾Ü¾ø",
+					.setNegativeButton("æ‹’ç»",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
 									// TODO Auto-generated method stub
 									XmppService.removeUser(roster, fromUserJid);
-									dialog.cancel();// È¡Ïûµ¯³ö¿ò
+									dialog.cancel();// å–æ¶ˆå¼¹å‡ºæ¡†
 								}
 							}).create().show();
 		}
@@ -303,16 +303,16 @@ public class FriendListActivity extends Activity implements
 				groupInfo.setGroupName(group.getName());
 				Collection<RosterEntry> entries = group.getEntries();
 				for (RosterEntry entry : entries) {
-					if ("both".equals(entry.getType().name())) {// Ö»Ìí¼ÓË«±ßºÃÓÑ
+					if ("both".equals(entry.getType().name())) {// åªæ·»åŠ åŒè¾¹å¥½å‹
 						friendInfo = new FriendInfo();
 						friendInfo.setUsername(Utils.getJidToUsername(entry
 								.getUser()));
 						System.out
-								.println("ÎÒµÄºÃÓÑĞÄÇéÊÇ£º"
+								.println("æˆ‘çš„å¥½å‹å¿ƒæƒ…æ˜¯ï¼š"
 										+ entry.getStatus().fromString(
 												entry.getUser()));
 						if (friendMood == null) {
-							friendMood = "QÎÒ°É£¬¾²´ıÄãµÄÀ´ĞÅ£¡";
+							friendMood = "Qæˆ‘å§ï¼Œé™å¾…ä½ çš„æ¥ä¿¡ï¼";
 						}
 						friendInfo.setMood(friendMood);
 						friendList.add(friendInfo);
@@ -325,7 +325,7 @@ public class FriendListActivity extends Activity implements
 			}
 			if (groupList.isEmpty()) {
 				groupInfo = new GroupInfo();
-				groupInfo.setGroupName("ÎÒµÄºÃÓÑ");
+				groupInfo.setGroupName("æˆ‘çš„å¥½å‹");
 				groupInfo.setFriendInfoList(new ArrayList<FriendInfo>());
 				groupList.add(groupInfo);
 				groupInfo = null;
@@ -513,13 +513,13 @@ public class FriendListActivity extends Activity implements
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		menu.clear();
-		menu.add(Menu.NONE, Menu.FIRST + 1, 1, "Ë¢ĞÂÁĞ±í").setIcon(
+		menu.add(Menu.NONE, Menu.FIRST + 1, 1, "åˆ·æ–°åˆ—è¡¨").setIcon(
 				R.drawable.menu_refresh);
-		menu.add(Menu.NONE, Menu.FIRST + 2, 1, "¸üĞÂĞÄÇé").setIcon(
+		menu.add(Menu.NONE, Menu.FIRST + 2, 1, "æ›´æ–°å¿ƒæƒ…").setIcon(
 				R.drawable.menu_setting);
-		menu.add(Menu.NONE, Menu.FIRST + 3, 1, "Ìí¼ÓºÃÓÑ").setIcon(
+		menu.add(Menu.NONE, Menu.FIRST + 3, 1, "æ·»åŠ å¥½å‹").setIcon(
 				R.drawable.addfriends_icon_icon);
-		menu.add(Menu.NONE, Menu.FIRST + 4, 1, "ÍË³öµÇÂ¼").setIcon(
+		menu.add(Menu.NONE, Menu.FIRST + 4, 1, "é€€å‡ºç™»å½•").setIcon(
 				R.drawable.menu_exit);
 		return super.onPrepareOptionsMenu(menu);
 	}
@@ -528,7 +528,7 @@ public class FriendListActivity extends Activity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case Menu.FIRST + 1:
-			friendMood = "dd£¡";
+			friendMood = "ddï¼";
 			loadFriend();
 			// Intent intent1 = new Intent();
 			// intent1.putExtra("USERID", pUSERID);
@@ -543,7 +543,7 @@ public class FriendListActivity extends Activity implements
 					R.layout.dialog_mood, null);
 			Dialog dialog = new AlertDialog.Builder(this)
 					.setView(myMoodView)
-					.setPositiveButton("¸ü¸Ä",
+					.setPositiveButton("æ›´æ”¹",
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
@@ -551,13 +551,13 @@ public class FriendListActivity extends Activity implements
 									myMood = ((EditText) myMoodView
 											.findViewById(R.id.myMood))
 											.getText().toString().trim();
-									System.out.println("ÎÒ¸ü¸ÄµÄĞÄÇéÊÇ£º" + myMood);
+									System.out.println("æˆ‘æ›´æ”¹çš„å¿ƒæƒ…æ˜¯ï¼š" + myMood);
 									XmppService.changeStateMessage(connection,
 											myMood);
 									myStatusText.setText(myMood);
 								}
 							})
-					.setNegativeButton("È¡Ïû",
+					.setNegativeButton("å–æ¶ˆ",
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
@@ -586,7 +586,7 @@ public class FriendListActivity extends Activity implements
 	}
 
 	/**
-	 * ³¤°´ÊÂ¼şÉ¾³ıºÃÓÑ
+	 * é•¿æŒ‰äº‹ä»¶åˆ é™¤å¥½å‹
 	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
@@ -618,9 +618,9 @@ public class FriendListActivity extends Activity implements
 						.findViewById(R.id.delCheckBox);
 				Dialog dialog = new AlertDialog.Builder(this)
 						.setIcon(R.drawable.default_head)
-						.setTitle("É¾³ıºÃÓÑ")
+						.setTitle("åˆ é™¤å¥½å‹")
 						.setView(delFriendView)
-						.setPositiveButton("È·¶¨",
+						.setPositiveButton("ç¡®å®š",
 								new DialogInterface.OnClickListener() {
 									@Override
 									public void onClick(DialogInterface dialog,
@@ -642,7 +642,7 @@ public class FriendListActivity extends Activity implements
 										startActivity(intent);
 									}
 								})
-						.setNegativeButton("È¡Ïû",
+						.setNegativeButton("å–æ¶ˆ",
 								new DialogInterface.OnClickListener() {
 									@Override
 									public void onClick(DialogInterface dialog,

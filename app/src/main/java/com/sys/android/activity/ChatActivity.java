@@ -51,19 +51,19 @@ import com.sys.android.xmppmanager.XmppConnection;
 
 public class ChatActivity extends Activity {
 
-	private String userChat = "";// µ±Ç°ÁÄÌì userChat
-	private String userChatSendFile = "";// ¸øË­·¢ÎÄ¼ş
+	private String userChat = "";// å½“å‰èŠå¤© userChat
+	private String userChatSendFile = "";// ç»™è°å‘æ–‡ä»¶
 	private ChatListAdapter adapter;
 	private List<Msg> listMsg = new LinkedList<Msg>();
-	private String pUSERID;// ×Ô¼ºµÄuser
-	private String pFRIENDID;// ´°¿ÚµÄ Ãû³Æ
+	private String pUSERID;// è‡ªå·±çš„user
+	private String pFRIENDID;// çª—å£çš„ åç§°
 	private EditText msgText;
 	private TextView chat_name;
 	private NotificationManager mNotificationManager;
 	private ChatManager cm;
 	private RecordButton mRecordButton;
 
-	// ·¢ËÍÎÄ¼ş
+	// å‘é€æ–‡ä»¶
 	private OutgoingFileTransfer sendTransfer;
 	public static String FILE_ROOT_PATH = Environment
 			.getExternalStorageDirectory().getPath() + "/chat/file";
@@ -96,35 +96,35 @@ public class ChatActivity extends Activity {
 
 						if (audioPath != null) {
 							try {
-								// ×Ô¼ºÏÔÊ¾ÏûÏ¢
-								Msg myChatMsg = new Msg(pUSERID, time + "ÓïÒôÏûÏ¢",
+								// è‡ªå·±æ˜¾ç¤ºæ¶ˆæ¯
+								Msg myChatMsg = new Msg(pUSERID, time + "è¯­éŸ³æ¶ˆæ¯",
 										TimeRender.getDate(), Msg.FROM_TYPE[1],
 										Msg.TYPE[0], Msg.STATUS[3], time + "",
 										audioPath);
 								listMsg.add(myChatMsg);
-								String[] pathStrings = audioPath.split("/"); // ÎÄ¼şÃû
+								String[] pathStrings = audioPath.split("/"); // æ–‡ä»¶å
 								
-								//·¢ËÍ ¶Ô·½µÄÏûÏ¢
+								//å‘é€ å¯¹æ–¹çš„æ¶ˆæ¯
 								String fileName = null ;
 								if (pathStrings!=null && pathStrings.length>0) {
 									fileName = pathStrings[pathStrings.length-1];
 								}
-								Msg sendChatMsg = new Msg(pUSERID, time + "ÓïÒôÏûÏ¢",
+								Msg sendChatMsg = new Msg(pUSERID, time + "è¯­éŸ³æ¶ˆæ¯",
 										TimeRender.getDate(), Msg.FROM_TYPE[0],
 										Msg.TYPE[0], Msg.STATUS[3], time + "",
 										fileName);
 								
-								// Ë¢ĞÂÊÊÅäÆ÷
+								// åˆ·æ–°é€‚é…å™¨
 								adapter.notifyDataSetChanged();
 
-								// ·¢ËÍÏûÏ¢
+								// å‘é€æ¶ˆæ¯
 								newchat.sendMessage(Msg.toJson(sendChatMsg));
 								sendFile(audioPath, myChatMsg);//
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
 						} else {
-							Toast.makeText(ChatActivity.this, "·¢ËÍÊ§°Ü",
+							Toast.makeText(ChatActivity.this, "å‘é€å¤±è´¥",
 									Toast.LENGTH_SHORT).show();
 						}
 
@@ -136,7 +136,7 @@ public class ChatActivity extends Activity {
 	private void init() {
 		mNotificationManager = (NotificationManager) this
 				.getSystemService(Service.NOTIFICATION_SERVICE);
-		// »ñÈ¡Intent´«¹ıÀ´µÄÓÃ»§Ãû
+		// è·å–Intentä¼ è¿‡æ¥çš„ç”¨æˆ·å
 		this.pUSERID = getIntent().getStringExtra("USERID");
 		this.userChat = getIntent().getStringExtra("user");/*
 															 * + "/" +
@@ -146,9 +146,9 @@ public class ChatActivity extends Activity {
 		userChatSendFile = userChat + "/" + FriendListActivity.MY_RESOUCE_NAME;
 		this.pFRIENDID = getIntent().getStringExtra("FRIENDID");
 		/*
-		 * System.out.println("½ÓÊÕÏûÏ¢µÄÓÃ»§pFRIENDIDÊÇ£º" + userChat);
-		 * System.out.println("·¢ËÍÏûÏ¢µÄÓÃ»§pUSERIDÊÇ£º" + pUSERID);
-		 * System.out.println(" ÏûÏ¢µÄÓÃ»§pFRIENDIDÊÇ£º" + pFRIENDID);
+		 * System.out.println("æ¥æ”¶æ¶ˆæ¯çš„ç”¨æˆ·pFRIENDIDæ˜¯ï¼š" + userChat);
+		 * System.out.println("å‘é€æ¶ˆæ¯çš„ç”¨æˆ·pUSERIDæ˜¯ï¼š" + pUSERID);
+		 * System.out.println(" æ¶ˆæ¯çš„ç”¨æˆ·pFRIENDIDæ˜¯ï¼š" + pFRIENDID);
 		 */
 
 		chat_name = (TextView) findViewById(R.id.chat_name);
@@ -157,12 +157,12 @@ public class ChatActivity extends Activity {
 		listview.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 		this.adapter = new ChatListAdapter(this, listMsg);
 		listview.setAdapter(adapter);
-		// »ñÈ¡ÎÄ±¾ĞÅÏ¢
+		// è·å–æ–‡æœ¬ä¿¡æ¯
 		this.msgText = (EditText) findViewById(R.id.formclient_text);
-		// ÏûÏ¢¼àÌı
+		// æ¶ˆæ¯ç›‘å¬
 		cm = XmppConnection.getConnection().getChatManager();
 
-		// ·µ»Ø°´Å¥
+		// è¿”å›æŒ‰é’®
 		Button mBtnBack = (Button) findViewById(R.id.chat_back);
 		mBtnBack.setOnClickListener(new OnClickListener() {
 			@Override
@@ -171,14 +171,14 @@ public class ChatActivity extends Activity {
 			}
 		});
 
-		receivedMsg();// ½ÓÊÕÏûÏ¢
-		sendMsg();// ·¢ËÍÏûÏ¢
-		receivedFile();// ½ÓÊÕÎÄ¼ş
+		receivedMsg();// æ¥æ”¶æ¶ˆæ¯
+		sendMsg();// å‘é€æ¶ˆæ¯
+		receivedFile();// æ¥æ”¶æ–‡ä»¶
 
 	}
 
 	/**
-	 * ½ÓÊÕÏûÏ¢
+	 * æ¥æ”¶æ¶ˆæ¯
 	 */
 	public void receivedMsg() {
 
@@ -188,17 +188,17 @@ public class ChatActivity extends Activity {
 				chat.addMessageListener(new MessageListener() {
 					@Override
 					public void processMessage(Chat chat2, Message message) {
-						// ÊÕµ½À´×Ôpc·şÎñÆ÷µÄÏûÏ¢£¨»ñÈ¡×Ô¼ººÃÓÑ·¢À´µÄĞÅÏ¢£©
+						// æ”¶åˆ°æ¥è‡ªpcæœåŠ¡å™¨çš„æ¶ˆæ¯ï¼ˆè·å–è‡ªå·±å¥½å‹å‘æ¥çš„ä¿¡æ¯ï¼‰
 						if (message.getFrom().contains(userChat)) {
 							// Msg.analyseMsgBody(message.getBody(),userChat);
-							// »ñÈ¡ÓÃ»§¡¢ÏûÏ¢¡¢Ê±¼ä¡¢IN
+							// è·å–ç”¨æˆ·ã€æ¶ˆæ¯ã€æ—¶é—´ã€IN
 							/*
 							 * String[] args = new String[] { userChat,
 							 * message.getBody(), TimeRender.getDate(), "IN" };
 							 */
-							// ÔÚhandlerÀïÈ¡³öÀ´ÏÔÊ¾ÏûÏ¢
+							// åœ¨handleré‡Œå–å‡ºæ¥æ˜¾ç¤ºæ¶ˆæ¯
 							android.os.Message msg = handler.obtainMessage();
-							System.out.println("·şÎñÆ÷·¢À´µÄÏûÏ¢ÊÇ chat£º"
+							System.out.println("æœåŠ¡å™¨å‘æ¥çš„æ¶ˆæ¯æ˜¯ chatï¼š"
 									+ message.getBody());
 							msg.what = 1;
 							msg.obj = message.getBody();
@@ -212,57 +212,57 @@ public class ChatActivity extends Activity {
 	}
 
 	/**
-	 * ·¢ËÍÏûÏ¢
+	 * å‘é€æ¶ˆæ¯
 	 * 
 	 * @author Administrator
 	 * 
 	 */
 	public void sendMsg() {
-		// ·¢ËÍÏûÏ¢
+		// å‘é€æ¶ˆæ¯
 		Button btsend = (Button) findViewById(R.id.formclient_btsend);
-		// ·¢ËÍÏûÏ¢¸øpc·şÎñÆ÷µÄºÃÓÑ£¨»ñÈ¡×Ô¼ºµÄ·şÎñÆ÷£¬ºÍºÃÓÑ£©
+		// å‘é€æ¶ˆæ¯ç»™pcæœåŠ¡å™¨çš„å¥½å‹ï¼ˆè·å–è‡ªå·±çš„æœåŠ¡å™¨ï¼Œå’Œå¥½å‹ï¼‰
 		newchat = cm.createChat(userChat, null);
 		btsend.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// »ñÈ¡textÎÄ±¾
+				// è·å–textæ–‡æœ¬
 				final String msg = msgText.getText().toString();
 				if (msg.length() > 0) {
-					// ×Ô¼ºÏÔÊ¾ÏûÏ¢
+					// è‡ªå·±æ˜¾ç¤ºæ¶ˆæ¯
 					Msg chatMsg = new Msg(pUSERID, msg, TimeRender.getDate(),
 							Msg.FROM_TYPE[1]);
  					listMsg.add(chatMsg);
- 					//·¢ËÍ¶Ô·½
+ 					//å‘é€å¯¹æ–¹
  					Msg sendChatMsg = new Msg(pUSERID, msg, TimeRender.getDate(),
 							Msg.FROM_TYPE[0]); 
-					// Ë¢ĞÂÊÊÅäÆ÷
+					// åˆ·æ–°é€‚é…å™¨
 					adapter.notifyDataSetChanged();
 					try {
-						// ·¢ËÍÏûÏ¢
+						// å‘é€æ¶ˆæ¯
 						newchat.sendMessage(Msg.toJson(sendChatMsg));
 
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				} else {
-					Toast.makeText(ChatActivity.this, "·¢ËÍĞÅÏ¢²»ÄÜÎª¿Õ",
+					Toast.makeText(ChatActivity.this, "å‘é€ä¿¡æ¯ä¸èƒ½ä¸ºç©º",
 							Toast.LENGTH_SHORT).show();
 				}
-				// Çå¿Õtext
+				// æ¸…ç©ºtext
 				msgText.setText("");
 			}
 		});
 	}
 
 	/**
-	 * ½ÓÊÕÎÄ¼ş
+	 * æ¥æ”¶æ–‡ä»¶
 	 * 
 	 * @author Administrator
 	 * 
 	 */
 	public void receivedFile() {
 		/**
-		 * ½ÓÊÕÎÄ¼ş
+		 * æ¥æ”¶æ–‡ä»¶
 		 */
 		// Create the file transfer manager
 		final FileTransferManager manager = new FileTransferManager(
@@ -285,7 +285,7 @@ public class ChatActivity extends Activity {
 						android.os.Message msg = handler.obtainMessage();
 						transfer.recieveFile(file);
 						Msg msgInfo = queryMsgForListMsg(file.getName());
-						msgInfo.setFilePath(file.getPath());//¸üĞÂ filepath
+						msgInfo.setFilePath(file.getPath());//æ›´æ–° filepath
 						new MyFileStatusThread(transfer, msgInfo).start();
 
 					} catch (XMPPException e) {
@@ -299,7 +299,7 @@ public class ChatActivity extends Activity {
 							Msg.TYPE[0], Msg.STATUS[1] };
 					Msg msgInfo = new Msg(args[0], "redio", args[2], args[3],
 							Msg.TYPE[0], Msg.STATUS[1]);
-					// ÔÚhandlerÀïÈ¡³öÀ´ÏÔÊ¾ÏûÏ¢
+					// åœ¨handleré‡Œå–å‡ºæ¥æ˜¾ç¤ºæ¶ˆæ¯
 					android.os.Message msg = handler.obtainMessage();
 					msg.what = 5;
 					msg.obj = msgInfo;
@@ -310,13 +310,13 @@ public class ChatActivity extends Activity {
 	}
 
 	/**
-	 * ·¢ËÍÎÄ¼ş
+	 * å‘é€æ–‡ä»¶
 	 * 
 	 * @param path
 	 */
 	public void sendFile(String path, Msg msg) {
 		/**
-		 * ·¢ËÍÎÄ¼ş
+		 * å‘é€æ–‡ä»¶
 		 */
 		// Create the file transfer manager
 		FileTransferManager sendFilemanager = new FileTransferManager(
@@ -331,7 +331,7 @@ public class ChatActivity extends Activity {
 			sendTransfer.sendFile(new java.io.File(path), "send file");
 			new MyFileStatusThread(sendTransfer, msg).start();
 			/**
-			 * ¼àÌı
+			 * ç›‘å¬
 			 */
 		} catch (XMPPException e) {
 			e.printStackTrace();
@@ -370,7 +370,7 @@ public class ChatActivity extends Activity {
 			} else if (transfer.getStatus().equals(Status.refused)) {
 				msg.setReceive(Msg.STATUS[1]);
 			} else {
-				msg.setReceive(Msg.STATUS[0]);// ³É¹¦
+				msg.setReceive(Msg.STATUS[0]);// æˆåŠŸ
 
 			}
 
@@ -388,18 +388,18 @@ public class ChatActivity extends Activity {
 			case 1:
 				Msg chatMsg = Msg.analyseMsgBody(msg.obj.toString());
 				if (chatMsg != null) {
-					listMsg.add(chatMsg);// Ìí¼Óµ½ÁÄÌìÏûÏ¢
+					listMsg.add(chatMsg);// æ·»åŠ åˆ°èŠå¤©æ¶ˆæ¯
 					adapter.notifyDataSetChanged();
 				}
 
 				break;
-			case 2: // ·¢ËÍÎÄ¼ş
+			case 2: // å‘é€æ–‡ä»¶
 
 				break;
-			case 3: // ¸üĞÂÎÄ¼ş·¢ËÍ×´Ì¬
+			case 3: // æ›´æ–°æ–‡ä»¶å‘é€çŠ¶æ€
 				adapter.notifyDataSetChanged();
 				break;
-			case 5: // ½ÓÊÕÎÄ¼ş
+			case 5: // æ¥æ”¶æ–‡ä»¶
 				Msg msg2 = (Msg) msg.obj;
 				System.out.println(msg2.getFrom());
 				listMsg.add(msg2);
@@ -426,12 +426,12 @@ public class ChatActivity extends Activity {
 		myNoti.tickerText = s;
 		myNoti.defaults = Notification.DEFAULT_SOUND;
 		myNoti.flags |= Notification.FLAG_AUTO_CANCEL;
-		myNoti.setLatestEventInfo(this, "QQÏûÏ¢", s, appIntent);
+		myNoti.setLatestEventInfo(this, "QQæ¶ˆæ¯", s, appIntent);
 		mNotificationManager.notify(0, myNoti);
 	}
 
 	/**
-	 * ÊÇ·ñ½ÓÊÕ
+	 * æ˜¯å¦æ¥æ”¶
 	 * 
 	 * @param request
 	 * @return
@@ -451,20 +451,20 @@ public class ChatActivity extends Activity {
 	 */
 	static {
 		File root = new File(FILE_ROOT_PATH);
-		root.mkdirs();// Ã»ÓĞ¸ùÄ¿Â¼´´½¨¸ùÄ¿Â¼
+		root.mkdirs();// æ²¡æœ‰æ ¹ç›®å½•åˆ›å»ºæ ¹ç›®å½•
 		root = new File(RECORD_ROOT_PATH);
 		root.mkdirs();
 	}
 	
 	/**
-	 * ´Ólist ÖĞÈ¡³ö ·Ö¼ğÃû³ÆÏàÍ¬µÄ Msg
+	 * ä»list ä¸­å–å‡º åˆ†æ‹£åç§°ç›¸åŒçš„ Msg
 	 */
 	private Msg queryMsgForListMsg(String filePath){
 		
 		Msg msg = null;
 		for (int i = listMsg.size()-1; i>=0; i--) {
 			msg = listMsg.get(i);
-			if (filePath!=null && filePath.contains(msg.getFilePath()) ) {// ¶Ô·½´«¹ıÀ´µÄÖ»ÊÇÎÄ¼şµÄÃû³Æ
+			if (filePath!=null && filePath.contains(msg.getFilePath()) ) {// å¯¹æ–¹ä¼ è¿‡æ¥çš„åªæ˜¯æ–‡ä»¶çš„åç§°
 				return msg;
 			}
 		}
