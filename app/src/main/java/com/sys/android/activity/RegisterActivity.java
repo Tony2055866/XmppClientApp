@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jivesoftware.smack.PacketCollector;
@@ -36,8 +37,8 @@ public class RegisterActivity extends Activity implements OnClickListener {
 
 	private Button mBtnRegister;
 	private Button mRegBack;
-	private EditText mEmailEt, mNameEt, mPasswdEt, mPasswdEt2, mMotherLangEdit,mLearnLangEdit;
-
+	private EditText mEmailEt, mNameEt, mPasswdEt, mPasswdEt2;
+    private TextView mLearnLangEdit,mMotherLangEdit;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
@@ -47,8 +48,8 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		mBtnRegister.setOnClickListener(this);
 		mRegBack.setOnClickListener(this);
 
-		mMotherLangEdit = (EditText) findViewById(R.id.reg_motherLang);
-        mLearnLangEdit =  (EditText) findViewById(R.id.reg_learnLang);
+		mMotherLangEdit = (TextView) findViewById(R.id.reg_motherLang);
+        mLearnLangEdit =  (TextView) findViewById(R.id.reg_learnLang);
         //mMotherLangEdit.setOnClickListener(this);
         //mLearnLangEdit.setOnClickListener(this);
 
@@ -100,13 +101,13 @@ public class RegisterActivity extends Activity implements OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String res = "";
-                        if(selected.size() > 0){
+                        if (selected.size() > 0) {
                             res = selected.get(0);
                         }
-                        for(int k=1; k<selected.size(); k++) res += "," + selected.get(k);
-                        if(view.getId() == R.id.reg_learnLangLayout){
+                        for (int k = 1; k < selected.size(); k++) res += "," + selected.get(k);
+                        if (view.getId() == R.id.reg_learnLangLayout) {
                             mLearnLangEdit.setText(res);
-                        }else {
+                        } else {
                             mMotherLangEdit.setText(res);
                         }
                     }
