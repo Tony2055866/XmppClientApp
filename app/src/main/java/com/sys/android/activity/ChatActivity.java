@@ -410,12 +410,12 @@ public class ChatActivity extends Activity {
 		};
 	};
 
-	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
-		// XmppConnection.closeConnection();
-		System.exit(0);
-	}
+//	@Override
+//	public void onBackPressed() {
+//		super.onBackPressed();
+//		// XmppConnection.closeConnection();
+//		//System.exit(0);
+//	}
 
 	protected void setNotiType(int iconId, String s) {
 		Intent intent = new Intent();
